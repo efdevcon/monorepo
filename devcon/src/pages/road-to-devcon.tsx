@@ -383,6 +383,9 @@ const Hero = (props: any) => {
                     alt="Deva"
                   />
 
+                  {/* Safari is weird... */}
+                  <div className="opacity-0">a</div>
+
                   <div
                     ref={firstParallax.anchorRef}
                     className="w-[100vw] absolute left-full bottom-0 h-[1px] pointer-events-none"
