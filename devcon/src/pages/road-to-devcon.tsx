@@ -369,7 +369,7 @@ const Hero = (props: any) => {
                   </motion.div>
                 </div>
 
-                <div className={`flex relative justify-center`}>
+                <div className={`flex relative justify-center items-end`}>
                   <Image
                     className="object-contain object-bottom w-full"
                     ref={firstParallaxGlobe}
