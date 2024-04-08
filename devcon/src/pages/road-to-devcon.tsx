@@ -280,7 +280,7 @@ const useHorizontalParallax = (onChange: (progress: number) => void) => {
 }
 
 const Hero = (props: any) => {
-  const { controlsRef, sectionRefs, goToSection } = props
+  const { controlsRef, sectionRefs, goToSection, pages } = props
 
   useWindowWidth('window-width')
 
@@ -323,7 +323,7 @@ const Hero = (props: any) => {
 
       <SwipeToScroll slideControls={controlsRef}>
         <div className="absolute left-0 h-full pointer-events-none w-[var(--window-width)]" ref={sectionRefs[0]} />
-        <div className={`${css['horizontal-container']} pt-20 lg:pt-0 flex no-wrap h-full w-content relative`}>
+        <div className={`${css['horizontal-container']} pt-16 lg:pt-0 flex no-wrap h-full w-content relative`}>
           {/* Desktop version first slide */}
           <div className="relative hidden lg:block lg:w-[var(--window-width)] h-full">
             <div className="section h-full pt-4">
@@ -335,14 +335,11 @@ const Hero = (props: any) => {
                     className="z-1 max-w-[150px] md:max-w-[220px] mb-4"
                   />
                   <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[150px] md:max-w-[215px]" />
-                  <p className="text-slate-100 mt-8 text-lg">
-                    Hey there, I'm Deva, the Devcon unicorn. Since the dawn of Devcon I have been a guiding light to the
-                    wonderstruck wanderers of Ethereum's vast universe, supporting them to find their tribe and
-                    community.
-                  </p>
-                  <p className="text-slate-100 mt-4">
-                    And now, the Road to Devcon calls again, inviting a diverse array of mavericks, just like you.
-                  </p>
+
+                  <div className="mt-6">
+                    <RichText content={pages.journey.section_one}></RichText>
+                  </div>
+
                   <p className="text-slate-100 mt-4 text-sm">
                     {' '}
                     <span className="text-underline cursor-pointer" onClick={() => goToSection(1)}>
@@ -404,13 +401,8 @@ const Hero = (props: any) => {
             />
             <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[150px] md:max-w-[215px] mb-8" />
             <div className={css['glass-wrapper']}>
-              <p className="text-slate-100">
-                Hey there, I'm Deva, the Devcon unicorn. Since the dawn of Devcon I have been a guiding light to the
-                wonderstruck wanderers of Ethereum's vast universe, supporting them to find their tribe and community.
-              </p>
-              <p className="text-slate-100 mt-4">
-                And now, the Road to Devcon calls again, inviting a diverse array of mavericks, just like you.
-              </p>
+              <RichText content={pages.journey.section_one}></RichText>
+
               <p className="text-slate-100 mt-4">Follow me, and join the journey. 🦄✨</p>
             </div>
 
@@ -435,17 +427,7 @@ const Hero = (props: any) => {
           <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
             <div className="h-[1px] w-full" ref={sectionRefs[1]}></div>
             <div className={css['glass-wrapper']}>
-              <p className="text-slate-100 text-base bold lg:text-xl">Why Devcon is for You</p>
-              <p className="text-slate-100 mt-4 text-lg">
-                Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
-                kindest people in the Ethereum ecosystem IRL, and gain insight into a unique culture that is challenging
-                to fully understand just online.
-              </p>
-              <p className="text-slate-100 mt-4 text-sm">
-                At Devcon, we explore Ethereum together through fiery dialogues, workshops, and peer-to-peer
-                interactions. It’s where you are welcomed by a tribe that nurtures your growth, and where you build new
-                relationships and networks.
-              </p>
+              <RichText content={pages.journey.section_two}></RichText>
 
               <p className="text-slate-100 mt-4 text-sm">
                 Explore{' '}
@@ -490,17 +472,8 @@ const Hero = (props: any) => {
           <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
             <div className="h-[1px] w-full" ref={sectionRefs[2]}></div>
             <div className={css['glass-wrapper']}>
-              <p className="text-slate-100 text-base bold lg:text-xl">What is the Road to Devcon?</p>
+              <RichText content={pages.journey.section_three}></RichText>
 
-              <p className="text-slate-100 mt-4 text-lg">
-                The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to
-                Devcon, organized by the active local communities in Southeast Asia.
-              </p>
-              <p className="text-slate-100 mt-4 text-sm">
-                Explorers like you are shaping the road together, diving into workshops and talks, empowered by
-                Ethereum’s promises and the motivation to bring this innovation to local communities, creating
-                opportunities to learn and connect.
-              </p>
               <p className="text-slate-100 mt-4 text-sm">
                 <Link to="#events" className="text-underline">
                   Find the event that vibes with you
@@ -542,28 +515,7 @@ const Hero = (props: any) => {
           <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
             <div className="h-[1px] w-full" ref={sectionRefs[3]}></div>
             <div className={css['glass-wrapper']}>
-              <p className="text-slate-100 text-base bold lg:text-xl">
-                Become a leader: Organize an event or start a community
-              </p>
-
-              <p className="text-slate-100 mt-4 lg:text-lg">
-                If you're in SEA, community-driven, and passionate about Ethereum's positive impact, we're here to
-                support you! This is your call to adventure, to be part of something bigger, something wilder.
-              </p>
-              <p className="text-slate-100 mt-4 text-sm">
-                Imagine organizing events within your community to showcase Ethereum, or starting a new grassroots
-                community through meetups and other educational initiatives focused on Ethereum.
-              </p>
-              <p className="text-slate-100 mt-4 text-sm">
-                If a fire is ignited within you, now is the time to apply for the RTD grants and be a part of building
-                our empowered, decentralized future. 🦄✨
-              </p>
-
-              <Link to="https://esp.ethereum.foundation/devcon-grants">
-                <Button fat color="purple-1" className="mt-8" fill>
-                  Apply For a Grant →
-                </Button>
-              </Link>
+              <RichText content={pages.journey.section_four}></RichText>
             </div>
           </div>
         </div>
@@ -866,6 +818,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
             sectionRefs={sections}
             showDragIndicator={showDragIndicator}
             goToSection={goToSection}
+            pages={pages}
           />
         </PageHero>
 

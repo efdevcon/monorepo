@@ -18,6 +18,8 @@ const TwoColumns = (data: any) => {
 };
 
 const Buttons = (data: any) => {
+  if (!data.Button) return null;
+
   return (
     <div className="flex gap-4">
       {data.Button.map(({ text, url }: any) => {
@@ -57,7 +59,7 @@ export default ({ content }: { content: TinaMarkdownContent }) => {
           // p: ({ children }: any) => {
           //   return <div>{children}</div>;
           // },
-          // Different font sizes don't really make semantic sense as headers - we normalize all markdown headers to paragraphs, and will add header functionality separately
+          // Different font sizes don't really make semantic sense as headers - we normalize all markdown headers to paragraphs (so it's really just a size picker)
           h1: ({ children }: any) => {
             return (
               <p data-cms-header="h1" className="text-3xl">
@@ -81,23 +83,17 @@ export default ({ content }: { content: TinaMarkdownContent }) => {
           },
           h4: ({ children }: any) => {
             return (
-              <p data-cms-header="h4" className="text-lg">
-                {children}
-              </p>
+              <p /*data-cms-header="h4"*/ className="text-lg">{children}</p>
             );
           },
           h5: ({ children }: any) => {
             return (
-              <p data-cms-header="h5" className="text-base">
-                {children}
-              </p>
+              <p /*data-cms-header="h5"*/ className="text-base">{children}</p>
             );
           },
           h6: ({ children }: any) => {
             return (
-              <p data-cms-header="h6" className="text-base">
-                {children}
-              </p>
+              <p /*data-cms-header="h6"*/ className="text-sm">{children}</p>
             );
           },
         }}
